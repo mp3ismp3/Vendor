@@ -16,14 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.conf.urls import include
-from catalog import views as catalog_views
-
+from django.views.generic.base import TemplateView
+# from catalog import views as catalog_views
+from django.contrib.auth import views
+from .views import register
 
 urlpatterns = [
+    # path('account/',include(auth.urls)),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('catalog/', include('catalog.urls')),
-    path('vendor/', include('vendor.urls')),
-    re_path(r'^$', catalog_views.index2, name = 'home'),
-    re_path(r'^new_add/(\d+)/(\d+)/$', catalog_views.add2, name = 'add2'),
-    re_path(r'^add/(\d+)/(\d+)/$', catalog_views.add, name ='add'),
+    path('vendor/', include('vendor.urls'), name = 'vendor'),
+    path('', include('searchengine.urls')),
+    path('home/', TemplateView.as_view(template_name ='registration/home.html'), name ='home'),
+    path('register/', register, name = 'register'),
+    # re_path(r'^new_add/(\d+)/(\d+)/$', catalog_views.add2, name = 'add2'),
+    # re_path(r'^add/(\d+)/(\d+)/$', catalog_views.add, name ='add'),
 ]

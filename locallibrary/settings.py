@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-z#%d=i(f8sg4dol*-e3^j@qfl-pmb6-rn0yro*097o9pt(pxg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,10 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig',
-    'shop.apps.ShopConfig',
-    'login.apps.LoginConfig',
     'vendor.apps.VendorConfig',
+    'searchengine.apps.SearchengineConfig'
 ]
 
 MIDDLEWARE = [
@@ -117,8 +115,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+LOGIN_REDIRECT_URL = '/vendor'
+LOGOUT_REDIRECT_URL ='/'

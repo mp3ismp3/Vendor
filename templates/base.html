@@ -3,12 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %} {% endblock %}</title>
-        <link rel="stylesheet" type = "text/css" href ="{% static 'vendors/vendors.css' %}">
     </head>
     <body>
-        <div class ='name_card'>
         {% block content %}
         {% endblock %}
-        </div>
     </body>
 </html>

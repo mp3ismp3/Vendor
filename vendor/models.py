@@ -12,7 +12,7 @@ class Vendor(models.Model):
     def __str__(self):
         return self.vendor_name
     def get_absolute_url(self):
-        return reverse('vendors:vendor_id', kwargs={'id' : self.id})
+        return reverse('vendors:vendor_id', kwargs={'pk' : self.id})
 
 class Item(models.Model):
     item_name = models.CharField(max_length = 20)

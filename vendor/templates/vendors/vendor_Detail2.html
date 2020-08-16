@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}My store{% endblock %}
+{% block content %}
+<h1> 電商：{{ vendor.vendor_name }}</h1>
+<ul>
+    <li>內容 : {{ vendor.vendor_content }}</li>
+    <li>客戶服務電話 : {{ vendor.vendor_phone }}</li>
+    <li>本店地址 : {{ vendor.vendor_addr }}</li>
+</ul>
+{% endblock %}

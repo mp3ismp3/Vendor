@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Vendor
 #from .forms import VendorForm
-from .forms import RawVendorForm
+from .forms import RawVendorForm, VendorModelForm
 from django.http import Http404
-# from django.views.generic import ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
 # Create your views here.
+
 def vendor_index(request):
     vendor_list = Vendor.objects.all()  #vendor_list>>>list
     context = {'vendor_list': vendor_list}
@@ -41,11 +42,31 @@ def singleVendor(request, id):
         }
     return render(request, "vendors/vendor_singleVendor.html", context)
 
-# class VendorListView(ListView):
-#     model = Vendor
-#     template_name = 'vendors/vendor_detail.html'
+#-----------------------------------------------------------------------------------------
+# CBV
 
-# class VendorDetail(DetailView):
-#     model = Vendor
-#     template_name = 'vendors/vendor_vendor_singleVendor.html'
+class VendorListView(ListView):
+    model = Vendor
+    template_name = 'vendors/vendor_lst.html'
 
+class VendorDetailView(DetailView):
+    model = Vendor
+    template_name = 'vendors/vendor_Detail2.html'
+    
+class VendorCreateView(CreateView):
+    form_class = VendorModelForm
+    # model = Vendor
+    # fields = '__all__'
+    template_name = 'vendors/vendor_create.html'
+
+class VendorUpdateView(UpdateView):
+    form_class = VendorModelForm
+    template_name ='vendors/vendor_create.html'
+    queryset = Vendor.objects.all()
+
+#  class HomePageView(TemplateView):
+#      template_name ='home.html'
+
+# class ItemListView(ListView):
+#     model = Item
+#     template_name = 
